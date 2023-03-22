@@ -6,7 +6,7 @@ A simple userscript that adds a button to your Google searches to only show resu
 ## Downloading the script
 The direct download link is here:
 
-* [GreasyFork](https://greasyfork.org/en/scripts/462356-reddit-on-google-search)
+* [GreasyFork](https://greasyfork.org/en/scripts/462358-github-search-on-google)
 
 **Chrome users:** You will need a script manager extension like [TamperMonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)  or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/). Then go to the download link above and click on 'Install X.X'. Finally, click on 'install' in the new window that will open.
 
