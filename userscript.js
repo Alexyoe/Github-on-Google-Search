@@ -3,7 +3,7 @@
 // @version      2.0.1
 // @description  Adds a button to search github.com with Google
 // @author       Alexyoe
-// @namespace    https://github.com/Alexyoe/Reddit-on-Google-Search
+// @namespace    https://github.com/Alexyoe/Github-on-Google-Search
 // @license      MIT
 // @include      http*://www.google.*/search*
 // @include      http*://google.*/search*
