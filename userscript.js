@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Github search on Google
-// @version      2.0.0
+// @version      2.0.1
 // @description  Adds a button to search github.com with Google
 // @author       Alexyoe
 // @namespace    https://github.com/Alexyoe/Reddit-on-Google-Search
@@ -59,6 +59,6 @@ if (typeof trustedTypes !== "undefined") {
   const buttonBox = document.querySelector(".TrmO7");
   buttonBox.classList.add("size-fix");
   const buttonBoxCSS = document.createElement("style");
-  buttonBoxCSS.innerHTML = ".size-fix { width: fit-content !important; }";
+  buttonBoxCSS.innerHTML = ".size-fix { min-width: fit-content !important; }";
   document.head.appendChild(buttonBoxCSS);
 })();
