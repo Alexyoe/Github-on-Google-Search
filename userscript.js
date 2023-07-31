@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Github search on Google
-// @version      2.0.2
+// @version      2.0.3
 // @description  Adds a button to search github.com with Google
 // @author       Alexyoe
 // @namespace    https://github.com/Alexyoe/Github-on-Google-Search
@@ -12,6 +12,8 @@
 
 // Settings
 const iconVisible = true;
+const nameVisible = true;
+const btnPosition = "end"; // Start or End
 
 // Start Code
 const queryRegex = /q=[^&]+/g;
@@ -37,7 +39,9 @@ if (typeof trustedTypes !== "undefined") {
   if (iconVisible) {
     const span = document.createElement("span");
     span.className = isImageSearch ? "m3kSL" : "mUKzod";
-    span.style.cssText = "height:16px;width:16px;display:block";
+    span.style.cssText = nameVisible
+      ? "height:16px;width:16px;display:block"
+      : "height:16px;width:16px;display:block;margin:auto";
     span.innerHTML = githubIcon;
     el.appendChild(span);
   }
@@ -45,7 +49,9 @@ if (typeof trustedTypes !== "undefined") {
   // Create the div element for the text
   const link = document.createElement("div");
   link.textContent = "Github";
-  el.appendChild(link);
+  if (nameVisible) {
+    el.appendChild(link);
+  }
 
   // Add site:github.com to the query
   el.href = window.location.href.replace(queryRegex, (match) =>
@@ -61,7 +67,17 @@ if (typeof trustedTypes !== "undefined") {
     menuBar.insertBefore(el, menuBar.children[menuBar.childElementCount - 1]);
   } else {
     let menuBar = document.querySelectorAll(".nfdoRb")[1];
-    menuBar.appendChild(el);
+    switch (btnPosition) {
+      case "start":
+        menuBar.insertBefore(el, menuBar.children[0]);
+        break;
+      case "end":
+        menuBar.appendChild(el);
+        break
+      default:
+        menuBar.appendChild(el);
+        break;
+    }
   }
 
   // Fix Sizing and Icons
