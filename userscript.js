@@ -89,9 +89,14 @@ if (typeof trustedTypes !== "undefined") {
 
   // Inside that clone, find the <a>
   const btn = newItem.querySelector("a");
-  btn.href = window.location.href.replace(queryRegex, (m) =>
-    m.search(siteRegex) >= 0 ? m.replace(siteRegex, githubUrl) : m + githubUrl
-  );
+  btn.href = window.location.href.replace(queryRegex, (r) => {
+    // if site:github.com is already present, strip it out
+    if (siteRegex.test(r)) {
+      return r.replace(siteRegex, "");
+    }
+    // otherwise append it
+    return r + githubUrl;
+  });
 
   // find their inner div (jsname) or fallback to the <a>
   const inner = btn.querySelector("div[jsname]") || btn;
