@@ -53,6 +53,11 @@ After saving, the page reloads to apply your new settings.
 
 ---
 
+## Support
+
+If you find this script helpful, consider buying me a coffee on [Ko-fi](https://ko-fi.com/alexyoe).
+
+---
 
 ## License
 
@@ -66,6 +71,3 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ---
 
-## Donate
-
-If you find this script helpful, consider buying me a coffee on [Ko-fi](https://ko-fi.com/alexyoe).
