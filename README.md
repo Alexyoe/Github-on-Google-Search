@@ -1,38 +1,71 @@
-# Github On Google Search
+# Github on Google Search
 
-A simple userscript that adds a button to your Google searches to only show results from Github.com. You can just click on the button and it will automatically add `site:github.com` to your search!
+A lightweight UserScript that adds a "Github" button to your Google Search results, allowing you to quickly filter searches to Github.com.
 
-![Img](screenshot.png)
+![Img](./screenshots/screenshot-2.png)
+![Img](./screenshots/screenshot-3.png)
 
-## Downloading the script
+---
 
-The direct download link is here:
+## Features
 
-- [GreasyFork](https://greasyfork.org/en/scripts/462358-github-search-on-google)
+- **Icon or Label** – Choose between displaying the official github icon or the text label.
+- **Flexible Positioning** – Insert the button at the start, end, or immediately after the "AI Mode" toggle in Google's navigation bar.
+- **Persistent Settings** – Your preferences (display mode, position, wrapping) are saved automatically between browser sessions.
+- **No-Wrap Mode** – Optionally prevent the navigation bar from wrapping when many buttons are present.
+- **Easy Configuration** – Change settings on the fly via a menu command without editing the script.
 
-**Chrome users:** You will need a script manager extension like [TamperMonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/) or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/). Then go to the download link above and click on 'Install X.X'. Finally, click on 'install' in the new window that will open.
+---
 
-**Firefox users:** you'll need a script manager extension like [TamperMonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en). Then go to the download link above and click on 'Install X.X'. Finally, click on 'install' in the new window that will open.
+## Installation on Windows
 
-**Other browsers:** you can look for a script manager extension in your browser add-ons page. Look for Tampermonkey or Greasemonkey and install them. Then go to the download link above and click on 'Install X.X'. Finally, click on 'install' in the new window that will open.
+1. **Install a Userscript Manager**
+   - **Chrome / Edge**: Install [Tampermonkey](https://tampermonkey.net/?ext=dhdg&browser=chrome).
+   - **Firefox**: Install [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/).
 
-## Settings
+2. **Add the Script**
+   - Go to the GreasyFork page: https://greasyfork.org/en/scripts/462356-Github-on-google-search
+   - Click **Install** and confirm in the userscript manager popup.
 
-This userscript provides a settings section at the top of `userscript.js`, allowing you to easily customize the script according to your preferences.
+3. **Enjoy**
+   - Perform a Google search. The Github button will appear in the navigation bar.
 
-```
-+-------------+---------------+------------------------+---------+
-| Name        | Value         | Description            | Type    |
-+-------------+---------------+------------------------+---------+
-| iconVisible | true/false    | Show or hide icon      | boolean |
-+-------------+---------------+------------------------+---------+
-| nameVisible | true/false    | Show or hide name      | boolean |
-+-------------+---------------+------------------------+---------+
-| btnPosition | "start"/"end" | Set position of button | string  |
-+-------------+---------------+------------------------+---------+
-```
+---
 
-## Credit
+## Usage
 
-Check out my other user scripts over at: [Alexyoe's User Scripts](https://greasyfork.org/en/users/971278-alexyoe)
+- **Filter Search**: Click the **Github** button to toggle `site:github.com` on your current query.
+- **Auto-Reapply**: If you click again, it will remove the filter to return to standard search results.
 
+---
+
+## Configuration
+
+Open the userscript menu (right-click the Tampermonkey/Greasemonkey icon) and select **⚙️ Configure Github Button…**. You will be prompted to adjust:
+
+| Setting      | Options                    | Description                                      |
+|--------------|----------------------------|--------------------------------------------------|
+| **displayMode**  | `icon` or `label`          | Show the Github icon or the text label.          |
+| **btnPosition**  | `start`, `end`, `afterai`  | Position of the button in the nav bar.           |
+| **fixSize**      | `true` or `false`          | Prevent wrapping of the nav bar (no-wrap mode).  |
+
+After saving, the page reloads to apply your new settings.
+
+---
+
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+---
+
+## Credits
+
+- **Author**: Made with ♥ by [Alexyoe](https://github.com/Alexyoe)
+
+---
+
+## Donate
+
+If you find this script helpful, consider buying me a coffee on [Ko-fi](https://ko-fi.com/alexyoe).
