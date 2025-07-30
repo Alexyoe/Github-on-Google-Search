@@ -16,13 +16,37 @@
 
 // ==/UserScript==
 
-// Settings
+// Default settings
 const settings = {
-  // Choose exactly one: "icon" or "label"
-  displayMode: "icon",
-  btnPosition: "start", // "start", "end", or "afterai"
-  fixSize: false,
+  displayMode: GM_getValue("displayMode", "icon"),
+  btnPosition: GM_getValue("btnPosition", "start"),
+  fixSize: GM_getValue("fixSize", "false"),
 };
+
+// Save helper
+function save() {
+  GM_setValue("displayMode", settings.displayMode);
+  GM_setValue("btnPosition", settings.btnPosition);
+  GM_setValue("fixSize", settings.fixSize);
+}
+
+// Configure command that prompts for each setting
+GM_registerMenuCommand("⚙️ Configure Github Button…", () => {
+  const dm = prompt("displayMode? (icon or label)", settings.displayMode);
+  if (dm === "icon" || dm === "label") {
+    settings.displayMode = dm;
+  }
+  const bp = prompt("btnPosition? (start, end, afterai)", settings.btnPosition);
+  if (["start", "end", "afterai"].includes(bp)) {
+    settings.btnPosition = bp;
+  }
+  const fs = prompt("Prevent wrapping? (true, false)", settings.fixSize);
+  if (["true", "false"].includes(bp)) {
+    settings.fixSize = fs;
+  }
+  save();
+  location.reload();
+});
 
 // Start Code
 const queryRegex = /q=[^&]+/g;
@@ -32,7 +56,7 @@ const STORAGE_KEY = "gos-settings";
 
 // Github SVG
 let githubIcon =
-  '<svg class="DCxYpf" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
+  '<svg class="DCxYpf" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
 const isImageSearch = /[?&]tbm=isch/.test(location.search);
 
 // Trusted Types for CSP
@@ -61,6 +85,7 @@ if (typeof trustedTypes !== "undefined") {
 
   // Clone the entire wrapper.
   const newItem = sampleItem.cloneNode(true);
+  newItem.className = "gos-btn";
 
   // Inside that clone, find the <a>
   const btn = newItem.querySelector("a");
