@@ -8,6 +8,12 @@
 // @include      http*://www.google.*/search*
 // @include      http*://google.*/search*
 // @run-at       document-end
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_registerMenuCommand
+// @downloadURL https://update.greasyfork.org/scripts/462358/Github%20search%20on%20Google.user.js
+// @updateURL   https://update.greasyfork.org/scripts/462358/Github%20search%20on%20Google.meta.js
+
 // ==/UserScript==
 
 // Settings
@@ -22,6 +28,7 @@ const settings = {
 const queryRegex = /q=[^&]+/g;
 const siteRegex = /\+site(?:%3A|\:).+\.[^&+]+/g;
 const githubUrl = "+site%3Agithub.com";
+const STORAGE_KEY = "gos-settings";
 
 // Github SVG
 let githubIcon =
