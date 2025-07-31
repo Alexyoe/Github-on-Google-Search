@@ -112,7 +112,7 @@ if (typeof trustedTypes !== "undefined") {
   } else {
     const iconWrapper = document.createElement("span");
     iconWrapper.className = "R1QWuf";
-    iconWrapper.style.lineHeight = "17px";
+    iconWrapper.style.lineHeight = "15px";
     iconWrapper.innerHTML = githubIcon;
     inner.appendChild(iconWrapper);
   }
